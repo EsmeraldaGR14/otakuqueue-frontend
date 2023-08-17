@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  let navigate = useNavigate();
+  function startYourJourney() {
+    navigate("/anime-list");
+  }
+
   return (
     <div>
       <h1>Welcome To OtakuQueue</h1>
@@ -17,7 +23,7 @@ function Home() {
         story.
       </p>
 
-      <button onClick={""}>Start Your Journey</button>
+      <button onClick={startYourJourney}>Start Your Journey</button>
     </div>
   );
 }
