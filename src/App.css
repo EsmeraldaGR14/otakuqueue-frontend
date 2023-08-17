@@ -1,6 +1,36 @@
 .App {
   text-align: center;
+  background-color: #673ab7;
 }
+
+/* potential color scheme ideas
+
+Gold/Yellow Accent:
+
+  Primary Purple: #7E57C2
+  Accent Gold: #FFD700
+
+Teal Accent:
+
+  Primary Purple: #9C27B0
+  Accent Teal: #009688
+
+Crimson Accent:
+
+  Primary Purple: #673AB7
+  Accent Crimson: #DC143C
+
+Silver/Gray Accent:
+
+  Primary Purple: #AB47BC
+  Accent Silver: #C0C0C0
+
+Lime Green Accent:
+
+  Primary Purple: #8E24AA
+  Accent Lime Green: #00FF00
+
+*/
 
 .App-logo {
   height: 40vmin;
