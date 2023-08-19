@@ -1,5 +1,6 @@
 import Axios from "../API/Axios";
 
+// animelist
 async function getAllAnimeListAPI() {
   try {
     let result = await Axios.get(`/anime-shows`);
@@ -18,7 +19,9 @@ async function getAnimeByIdAPI(id) {
   }
 }
 
-async function addToWatchlistAPI(id, data) {
+// user
+
+async function createYourUser() {
   try {
     await Axios.post(`/`);
   } catch (error) {
@@ -26,4 +29,18 @@ async function addToWatchlistAPI(id, data) {
   }
 }
 
-export { getAllAnimeListAPI, getAnimeByIdAPI, addToWatchlistAPI };
+// user-watchlist
+async function addToWatchlistAPI(id, data) {
+  try {
+    await Axios.post(`/users`, id, data);
+  } catch (error) {
+    return error;
+  }
+}
+
+export {
+  getAllAnimeListAPI,
+  getAnimeByIdAPI,
+  addToWatchlistAPI,
+  createYourUser,
+};
