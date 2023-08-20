@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   let navigate = useNavigate();
   function startYourJourney() {
-    navigate("/anime-list");
+    navigate("/login");
   }
 
   return (

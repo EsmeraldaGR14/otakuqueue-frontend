@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllAnimeListAPI } from "../../utilities/API/API";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AnimeList() {
   const [data, setData] = useState([]);
@@ -18,6 +18,8 @@ function AnimeList() {
       }
     })();
   }, []);
+
+  console.log(useParams());
 
   function goToAnimeById(id) {
     navigate(`/anime-list/${id}`);
