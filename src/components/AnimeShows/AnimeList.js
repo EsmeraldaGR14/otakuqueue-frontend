@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { getAllAnimeList } from "../../utilities/API/API";
+import { getAllAnimeListAPI } from "../../utilities/API/API";
 import { useNavigate } from "react-router-dom";
 
 function AnimeList() {
   const [data, setData] = useState([]);
 
-  let navigate = useNavigate;
-
-  async function animeList() {
-    try {
-      let { data } = await getAllAnimeList();
-      setData(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  let navigate = useNavigate();
 
   useEffect(() => {
-    animeList();
+    (async function getAllAnimeList() {
+      try {
+        let { data } = await getAllAnimeListAPI();
+        setData(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, []);
 
   function goToAnimeById(id) {
@@ -28,7 +26,7 @@ function AnimeList() {
   return (
     <div>
       {data.map(({ title, id, rating }) => (
-        <div key={id} onClick={goToAnimeById}>
+        <div key={id} onClick={() => goToAnimeById(id)}>
           {title} - {rating}
         </div>
       ))}
