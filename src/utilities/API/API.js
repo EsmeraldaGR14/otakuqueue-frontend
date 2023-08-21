@@ -21,7 +21,16 @@ async function getAnimeByIdAPI(id) {
 
 // user
 
-async function createYourUser() {
+async function getUserAPI(username) {
+  try {
+    let result = await Axios.get(`/users/${username}`);
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
+
+async function createYourUserAPI() {
   try {
     await Axios.post(`/`);
   } catch (error) {
@@ -42,5 +51,6 @@ export {
   getAllAnimeListAPI,
   getAnimeByIdAPI,
   addToWatchlistAPI,
-  createYourUser,
+  createYourUserAPI,
+  getUserAPI,
 };

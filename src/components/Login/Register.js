@@ -13,20 +13,25 @@ function Register() {
     navigate("/login");
   }
 
+  function getUser() {}
+
   return (
     <div>
       <h2>Register</h2>
-      <label>Username</label>
-      <input
-        required
-        type="text"
-        id="username"
-        name="username"
-        onChange={(e) =>
-          handleOnChange(e.target.id, e.target.value, userData, setUserData)
-        }
-        value={userData.username}
-      ></input>
+      <form onSubmit={getUser(userData.username)}>
+        <label>Username</label>
+        <input
+          required
+          type="text"
+          id="username"
+          name="username"
+          onChange={(e) =>
+            handleOnChange(e.target.id, e.target.value, userData, setUserData)
+          }
+          value={userData.username}
+        ></input>
+        <button>SUBMIT</button>
+      </form>
       <p>Already a user?</p>
       <button onClick={goToLogin}>LOGIN</button>
     </div>
