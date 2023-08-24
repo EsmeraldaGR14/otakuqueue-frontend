@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getAllAnimeListAPI } from "../../utilities/API/API";
+import { getAllAnimeListAPI } from "../../utilities/API/AnimeListAPI";
 import { useNavigate, useParams } from "react-router-dom";
 
+// anime list GET ALL
 function AnimeList() {
   const [data, setData] = useState([]);
 
@@ -12,14 +13,13 @@ function AnimeList() {
       try {
         let { data } = await getAllAnimeListAPI();
         setData(data);
+
         console.log(data);
       } catch (error) {
         console.log(error);
       }
     })();
   }, []);
-
-  console.log(useParams());
 
   function goToAnimeById(id) {
     navigate(`/anime-list/${id}`);
