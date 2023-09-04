@@ -59,7 +59,6 @@ function EditAnime() {
                     Title:
                   </label>
                   <input
-                    required
                     type="text"
                     className="form-control"
                     id="title"
@@ -80,7 +79,6 @@ function EditAnime() {
                     Description:
                   </label>
                   <input
-                    required
                     type="text"
                     className="form-control"
                     id="description"
@@ -101,7 +99,6 @@ function EditAnime() {
                     Genre:
                   </label>
                   <input
-                    required
                     type="text"
                     className="form-control"
                     id="genre"
@@ -122,7 +119,6 @@ function EditAnime() {
                     Date:
                   </label>
                   <input
-                    required
                     type="date"
                     className="form-control"
                     id="release_date"
@@ -143,7 +139,6 @@ function EditAnime() {
                     Rating:
                   </label>
                   <input
-                    required
                     type="number"
                     className="form-control"
                     id="rating"
