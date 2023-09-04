@@ -12,7 +12,27 @@ function Logout() {
     navigate("/");
   }
 
-  return <button onClick={logoutUser}>Logout</button>;
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-header">
+              <h3 className="card-title text-center">Logout</h3>
+            </div>
+            <div className="card-body">
+              <p className="text-center">Are you sure you want to logout?</p>
+              <div className="text-center">
+                <button className="btn btn-danger" onClick={logoutUser}>
+                  LOGOUT
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Logout;

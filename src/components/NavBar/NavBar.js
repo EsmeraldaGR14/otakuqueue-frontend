@@ -4,7 +4,6 @@ import { useUserContext } from "../../utilities/Context/UserContext";
 
 function NavBar() {
   const { usersData } = useUserContext();
-  console.log(usersData);
 
   let navigate = useNavigate();
 
@@ -15,27 +14,63 @@ function NavBar() {
   }
 
   return (
-    <nav>
-      <h2>Otaku Queue</h2>
-      <div>
-        <NavLink to="/">Home</NavLink>
-      </div>
-      <div onClick={navigateUserToLogin}>
-        <NavLink to="/anime-list">Animes</NavLink>
-      </div>
-      <div onClick={navigateUserToLogin}>
-        <NavLink to="/watchlist">Watchlist</NavLink>
-      </div>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container">
+        <NavLink className="navbar-brand" to="/">
+          Otaku Queue
+        </NavLink>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/" exact>
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item" onClick={navigateUserToLogin}>
+              <NavLink className="nav-link" to="/anime-list">
+                Animes
+              </NavLink>
+            </li>
+            <li className="nav-item" onClick={navigateUserToLogin}>
+              <NavLink className="nav-link" to="/watchlist">
+                Watchlist
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/anime-list/add-new-anime">
+                Add Anime
+              </NavLink>
+            </li>
 
-      <div>
-        <NavLink to="/register">Register</NavLink>
-      </div>
-      <div>
-        {usersData ? (
-          <NavLink to="/logout">Logout</NavLink>
-        ) : (
-          <NavLink to="/login">Login</NavLink>
-        )}
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/register">
+                Register
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              {usersData ? (
+                <NavLink className="nav-link" to="/logout">
+                  Logout
+                </NavLink>
+              ) : (
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              )}
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Otaku Queue App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Purpose
 
-## Available Scripts
+The Otaku Queue App is a simple yet powerful application designed for anime and manga enthusiasts, commonly referred to as "otaku." This app allows you to create and manage a personal queue of anime titles that you plan to watch. Whether you're a seasoned otaku or just getting started, this app will help you organize your anime adventures with ease.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Anime by ID**: View detailed information about a specific anime by its ID.
+- **Anime List**: Browse a list of available anime titles.
+- **Edit Anime**: Modify details and settings for an anime in your queue.
+- **New Anime**: Add a new anime to your queue.
+- **Login**: Log in to your account.
+- **Logout**: Log out of your account.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Planned Features (Coming Soon)**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Personalized Watchlist**: Create and manage a personalized watchlist of anime titles you plan to watch.
 
-### `npm test`
+## How to Use
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. Clone the repository to your local machine:
+2. Navigate to the project directory:
+3. Install the required dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Configuration
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Create a `.env` file in the project root directory with the following environment variables:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Replace `your_database_url` with the URL to your database and `your_api_key` with the API key for the title database.
 
-### `npm run eject`
+2. Configure any other settings in the `config.js` file according to your preferences.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Running the App
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Start the application:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Open your web browser and navigate to `http://localhost:3000` to access the Otaku Queue App.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Usage
 
-## Learn More
+1. Sign up for an account or log in if you already have one.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Use the Anime List or Anime by ID features to explore anime titles.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Click on an anime title to view its details.
 
-### Code Splitting
+4. In your Anime List, you can edit and manage your anime queue.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Planned Features (Coming Soon)**
 
-### Analyzing the Bundle Size
+5. Use the Personalized Watchlist feature to create, add, edit and manage a list of anime titles you plan to watch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Appreciation
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for using the Otaku Queue App, and happy otaku adventures! 🍿📺🎉

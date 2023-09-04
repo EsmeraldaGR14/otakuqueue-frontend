@@ -1,61 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { useUserContext } from "../../utilities/Context/UserContext";
-import { addToWatchlistAPI } from "../../utilities/API/WatchlistAPI";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
 import { handleOnChange } from "../../utilities/helpers/onChangeHandler";
-import { getAnimeByIdAPI } from "../../utilities/API/AnimeListAPI";
+import { useNavigate, useParams } from "react-router-dom";
+import { useWatchlistContext } from "../../utilities/Context/WatchlistContext";
+import { useUserContext } from "../../utilities/Context/UserContext";
+import { editToWatchlistAPI } from "../../utilities/API/WatchlistAPI";
 
-function AddToWatchlist() {
-  const [data, setData] = useState({
-    status: "",
-    current_episode: 1,
-    is_favorite: false,
-  });
-
-  const [animeData, setAnimeData] = useState({});
-  console.log(animeData);
-
-  const { animeId } = useParams();
-  console.log(animeId);
-
-  const { usersData } = useUserContext();
-  console.log("this is context", usersData);
+function EditWatchlistShow() {
+  const [data, setData] = useState({});
 
   const statusOptions = ["watching", "want to watch", "watched"];
 
+  let { animeId } = useParams();
   let navigate = useNavigate();
 
-  async function submitNewWatchlistData(e) {
+  const { watchlistItem, setWatchlistItem } = useWatchlistContext();
+  const { usersData } = useUserContext();
+
+  async function submitEditedWatchlistData(e) {
     e.preventDefault();
     try {
-      console.log(data);
-      await addToWatchlistAPI(usersData.id, animeId, data);
-      navigate(`/anime-list`);
+      let editedWatchlistData = {
+        user_id: usersData.id,
+        anime_id: animeId,
+        status: watchlistItem.status,
+        current_episode: watchlistItem.current_episode,
+        is_favorite: watchlistItem.is_favorite,
+      };
+      await editToWatchlistAPI(usersData.id, animeId, editedWatchlistData);
+      navigate(`/watchlist/${animeId}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
-
-  useEffect(() => {
-    (async function getAnimeById() {
-      try {
-        let { data } = await getAnimeByIdAPI(animeId);
-        setAnimeData(data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [animeId]);
 
   return (
     <div className="container mt-5">
       <div className="card">
         <div className="card-header">
-          <h2 className="card-title">Add to Watchlist: {animeData.title}</h2>
+          <h2 className="card-title">
+            Edit Watchlist Item: {watchlistItem.title}
+          </h2>
         </div>
 
         <div className="card-body">
-          <form onSubmit={submitNewWatchlistData}>
+          <form onSubmit={submitEditedWatchlistData}>
             <div className="mb-3">
               <label htmlFor="status" className="form-label">
                 <strong>Status:</strong>
@@ -66,8 +54,14 @@ function AddToWatchlist() {
                 id="status"
                 name="status"
                 onChange={(e) =>
-                  handleOnChange(e.target.id, e.target.value, data, setData)
+                  handleOnChange(
+                    e.target.id,
+                    e.target.value,
+                    watchlistItem,
+                    setWatchlistItem
+                  )
                 }
+                value={watchlistItem.status || ""}
               >
                 <option value="" disabled>
                   Select an option
@@ -85,14 +79,19 @@ function AddToWatchlist() {
               </label>
               <input
                 required
-                type="text"
+                type="number"
                 className="form-control"
                 id="current_episode"
                 name="current_episode"
                 onChange={(e) =>
-                  handleOnChange(e.target.id, e.target.value, data, setData)
+                  handleOnChange(
+                    e.target.id,
+                    e.target.value,
+                    watchlistItem,
+                    setWatchlistItem
+                  )
                 }
-                value={data.current_episode}
+                value={watchlistItem.current_episode || ""}
               />
             </div>
             <div className="mb-3 form-check">
@@ -102,9 +101,14 @@ function AddToWatchlist() {
                 id="is_favorite"
                 name="is_favorite"
                 onChange={(e) =>
-                  handleOnChange(e.target.id, e.target.checked, data, setData)
+                  handleOnChange(
+                    e.target.id,
+                    e.target.checked,
+                    watchlistItem,
+                    setWatchlistItem
+                  )
                 }
-                checked={data.is_favorite}
+                checked={watchlistItem.is_favorite || false}
               />
               <label className="form-check-label" htmlFor="is_favorite">
                 <strong>Favorite:</strong>
@@ -118,7 +122,10 @@ function AddToWatchlist() {
                 Back
               </button>
               <button type="submit" className="btn btn-primary">
-                Add
+                Submit
+              </button>
+              <button type="button" className="btn btn-danger">
+                Remove
               </button>
             </div>
           </form>
@@ -128,4 +135,4 @@ function AddToWatchlist() {
   );
 }
 
-export default AddToWatchlist;
+export default EditWatchlistShow;

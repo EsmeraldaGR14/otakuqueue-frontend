@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   let navigate = useNavigate();
+
   function startYourJourney() {
     navigate("/login");
   }
 
   return (
-    <div>
-      <h1>Welcome To OtakuQueue</h1>
-      <p>
+    <div className="container mt-5">
+      <h1 className="display-4">Welcome To OtakuQueue</h1>
+      <p className="lead">
         Dive into a world of captivating stories, exhilarating adventures, and
         heartwarming moments with OtakuQueue – your gateway to a universe of
         anime wonder. 🌟 Unfold the tapestry of Japanese animation as you've
@@ -23,7 +24,9 @@ function Home() {
         story.
       </p>
 
-      <button onClick={startYourJourney}>Start Your Journey</button>
+      <button className="btn btn-primary" onClick={startYourJourney}>
+        Start Your Journey
+      </button>
     </div>
   );
 }

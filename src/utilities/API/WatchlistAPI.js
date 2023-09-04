@@ -8,6 +8,14 @@ async function addToWatchlistAPI(id, animeId, data) {
   }
 }
 
+async function editToWatchlistAPI(id, animeId, data) {
+  try {
+    await Axios.put(`/users/${id}/watchlist/`, animeId, data);
+  } catch (error) {
+    return error;
+  }
+}
+
 async function getAllWatchlistAPI(id) {
   try {
     let result = await Axios.get(
@@ -19,10 +27,11 @@ async function getAllWatchlistAPI(id) {
   }
 }
 
-async function getSingleWatchlist() {}
+async function getSingleWatchlist(id) {}
 
-async function deleteWatchlistShowAPI() {
+async function deleteWatchlistShowAPI(id, watchlistId) {
   try {
+    await Axios.delete(`/users/${id}/watchlist/${watchlistId}`);
   } catch (error) {
     return error;
   }
@@ -30,6 +39,7 @@ async function deleteWatchlistShowAPI() {
 
 export {
   addToWatchlistAPI,
+  editToWatchlistAPI,
   getAllWatchlistAPI,
   getSingleWatchlist,
   deleteWatchlistShowAPI,

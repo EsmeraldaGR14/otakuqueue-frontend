@@ -9,7 +9,6 @@ function Login() {
     username: "",
   });
   const { usersData, setUsersData } = useUserContext();
-  console.log("this is context", usersData);
 
   let navigate = useNavigate();
 

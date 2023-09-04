@@ -1,42 +1,40 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { getAllWatchlistAPI } from "../../utilities/API/WatchlistAPI";
+import {
+  deleteWatchlistShowAPI,
+  getAllWatchlistAPI,
+} from "../../utilities/API/WatchlistAPI";
 import { useUserContext } from "../../utilities/Context/UserContext";
 import { getAnimeByIdAPI } from "../../utilities/API/AnimeListAPI";
 import { useNavigate } from "react-router-dom";
 import { useWatchlistContext } from "../../utilities/Context/WatchlistContext";
 
 function Watchlist() {
-  const [data, setData] = useState([]);
+  const { usersData } = useUserContext();
+  const { setWatchlistItem } = useWatchlistContext();
+  const navigate = useNavigate();
+
+  const [watchlistData, setWatchlistData] = useState([]);
   const [animeInfo, setAnimeInfo] = useState([]);
 
-  const { setWatchlistItem } = useWatchlistContext();
-
-  const { usersData } = useUserContext();
-
-  let navigate = useNavigate();
-
-  // console.log("STARTING OVER");
-
   useEffect(() => {
-    (async function fetchData() {
+    async function fetchData() {
       try {
-        let { data } = await getAllWatchlistAPI(usersData.id);
-        setData(data);
-        console.log("watchlistData", data);
+        const { data } = await getAllWatchlistAPI(usersData.id);
+        setWatchlistData(data);
 
         const info = await Promise.all(
           data.map(({ id, anime_id, current_episode, status, is_favorite }) =>
             getAnimeInfo(id, anime_id, is_favorite, current_episode, status)
           )
         );
-        console.log("data", data);
+
         setAnimeInfo(info);
-        console.log("info", info);
       } catch (error) {
         console.error(error);
       }
-    })();
+    }
+
+    fetchData();
   }, [usersData.id]);
 
   async function getAnimeInfo(
@@ -47,9 +45,7 @@ function Watchlist() {
     status
   ) {
     try {
-      let { data } = await getAnimeByIdAPI(anime_id);
-      console.log("anime_id", anime_id);
-      console.log("data", data);
+      const { data } = await getAnimeByIdAPI(anime_id);
       return {
         id,
         title: data.title,
@@ -65,66 +61,45 @@ function Watchlist() {
 
   async function removeFromWatchlist(id) {
     try {
+      console.log(id, usersData);
+      // await deleteWatchlistShowAPI(id, animeInfo.anime_id);
     } catch (error) {
       console.error(error);
     }
   }
 
-  function handleSelectedAnime({
-    id,
-    anime_id,
-    current_episode,
-    status,
-    is_favorite,
-    title,
-  }) {
-    setWatchlistItem({
-      id,
-      anime_id,
-      current_episode,
-      status,
-      is_favorite,
-      title,
-    });
-    console.log("watchlist item", {
-      anime_id,
-      current_episode,
-      status,
-      is_favorite,
-      title,
-    });
-    navigate(`/watchlist/${id}`);
+  function handleSelectedAnime(anime) {
+    setWatchlistItem(anime);
+    navigate(`/watchlist/${anime.id}`);
   }
 
-  // console.log(data);
   return (
-    <div>
-      {animeInfo.map(
-        (
-          { id, anime_id, current_episode, status, is_favorite, title },
-          index
-        ) => (
-          <div key={index}>
+    <div className="container mt-5">
+      <h1>{usersData.username}'s Watchlist</h1>
+      <div className="row">
+        {animeInfo.map((anime, index) => (
+          <div key={index} className="col-md-4 mb-3">
             <div
-              onClick={() =>
-                handleSelectedAnime({
-                  id,
-                  anime_id,
-                  current_episode,
-                  status,
-                  title,
-                  is_favorite,
-                })
-              }
+              className="card"
+              style={{ cursor: "pointer" }}
+              onClick={() => handleSelectedAnime(anime)}
             >
-              <div>Title: {title}</div>
-              <div>{is_favorite ? "⭐" : ""}</div>
+              <div className="card-body d-flex justify-content-between align-items-center">
+                <h5 className="card-title">{anime.title}</h5>
+                {anime.is_favorite && <span className="text-warning">⭐</span>}
+              </div>
+              <div className="card-footer">
+                <button
+                  className="btn btn-danger"
+                  onClick={() => removeFromWatchlist(anime.id)}
+                >
+                  REMOVE
+                </button>
+              </div>
             </div>
-
-            <button onClick={() => removeFromWatchlist(id)}>REMOVE</button>
           </div>
-        )
-      )}
+        ))}
+      </div>
     </div>
   );
 }
