@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  deleteWatchlistShowAPI,
-  getAllWatchlistAPI,
-} from "../../utilities/API/WatchlistAPI";
+import { getAllWatchlistAPI } from "../../utilities/API/WatchlistAPI";
 import { useUserContext } from "../../utilities/Context/UserContext";
 import { getAnimeByIdAPI } from "../../utilities/API/AnimeListAPI";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +10,7 @@ function Watchlist() {
   const { setWatchlistItem } = useWatchlistContext();
   const navigate = useNavigate();
 
+  // eslint-disable-next-line no-unused-vars
   const [watchlistData, setWatchlistData] = useState([]);
   const [animeInfo, setAnimeInfo] = useState([]);
 

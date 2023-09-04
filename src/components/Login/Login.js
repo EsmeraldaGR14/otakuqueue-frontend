@@ -8,7 +8,7 @@ function Login() {
   const [userData, setUserData] = useState({
     username: "",
   });
-  const { usersData, setUsersData } = useUserContext();
+  const { setUsersData } = useUserContext();
 
   let navigate = useNavigate();
 

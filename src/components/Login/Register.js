@@ -13,10 +13,6 @@ function Register() {
 
   let navigate = useNavigate();
 
-  function goToLogin() {
-    navigate("/login");
-  }
-
   async function createNewUser(e, username) {
     e.preventDefault();
 

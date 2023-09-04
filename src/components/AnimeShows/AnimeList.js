@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllAnimeListAPI } from "../../utilities/API/AnimeListAPI";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AnimeList() {
   const [data, setData] = useState([]);

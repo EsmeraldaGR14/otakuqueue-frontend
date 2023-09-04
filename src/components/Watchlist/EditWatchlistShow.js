@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { handleOnChange } from "../../utilities/helpers/onChangeHandler";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWatchlistContext } from "../../utilities/Context/WatchlistContext";
@@ -6,7 +6,7 @@ import { useUserContext } from "../../utilities/Context/UserContext";
 import { editToWatchlistAPI } from "../../utilities/API/WatchlistAPI";
 
 function EditWatchlistShow() {
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
   const statusOptions = ["watching", "want to watch", "watched"];
 
